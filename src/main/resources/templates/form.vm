@@ -1,0 +1,45 @@
+package ${form_package};
+
+import ${do_package}.${table.className}Do
+#foreach($package in $packages)
+import ${package};
+#end
+
+/**
+ * ${table.tableComment}表单
+ *
+ * @author ${author}
+ * @version $v: ${version}, $time:${datetime} Exp $
+ */
+public class ${table.className}Form implements Serializable {
+
+#foreach($s in $list)
+    /** ${s.columnComment} **/
+    private ${s.propertyType.javaType} ${s.propertyName};
+
+#end
+
+#foreach($s in $list)
+    public ${s.propertyType.javaType} ${s.propertyNameGetter}() {
+        return ${s.propertyName};
+    }
+
+    public void ${s.propertyNameSetter}(${s.propertyType.javaType} ${s.propertyName}) {
+        this.${s.propertyName} = ${s.propertyName};
+    }
+
+#end
+
+    /**
+     * 将${table.tableComment}表单转换为${table.tableComment}业务实体
+     *
+     * @return ${table.className}Do
+     */
+    public ${table.className}Do convertDo() {
+        ${table.className}Do ${table.propertyName}Do = new ${table.className}Do();
+#foreach($s in $list)
+        ${table.propertyName}Do.${s.propertyNameSetter}(this.${s.propertyNameGetter}());
+#end
+        return ${table.propertyName}Do;
+    }
+}

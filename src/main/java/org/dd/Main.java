@@ -45,6 +45,18 @@ public class Main {
         GeneratorModel generatorModel = context.getBean(GeneratorModel.class);
         generatorModel.generator(tableList, columnList);
 
+        // 生成Form
+        GeneratorForm generatorForm = context.getBean(GeneratorForm.class);
+        generatorForm.generator(tableList, columnList);
+
+        // 生成Do
+        GeneratorDo generatorDo = context.getBean(GeneratorDo.class);
+        generatorDo.generator(tableList, columnList);
+
+        // 生成Convert
+        GeneratorConvert generatorConvert = context.getBean(GeneratorConvert.class);
+        generatorConvert.generator(tableList, columnList);
+
         /*// 生成Dao
         GeneratorDao generatorDao = context.getBean(GeneratorDao.class);
         generatorDao.generator(tableList, columnList);
